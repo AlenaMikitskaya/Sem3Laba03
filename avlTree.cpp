@@ -3,12 +3,6 @@
 
 using namespace std;
 
-Node::Node(int key):
-    key(key),
-    right(nullptr),
-    left(nullptr),
-    height(1) {}
-
 AvlTree::AvlTree():
     root(nullptr) {}
 
@@ -98,7 +92,7 @@ void AvlTree::fixHeight(Node* node)
     node->height=hr+1;
 }
 
-Node* AvlTree::rotateRight(Node *node) //right turn around node
+AvlTree::Node* AvlTree::rotateRight(Node *node) //right turn around node
 {
     Node *p;
     p=node->left;
@@ -109,7 +103,7 @@ Node* AvlTree::rotateRight(Node *node) //right turn around node
     return p;
 }
 
-Node* AvlTree::rotateLeft(Node *node) //left turn around node
+AvlTree::Node* AvlTree::rotateLeft(Node *node) //left turn around node
 {
     Node *p;
     p=node->right;
@@ -120,7 +114,7 @@ Node* AvlTree::rotateLeft(Node *node) //left turn around node
     return p;
 }
 
-Node* AvlTree::balancing(Node *node)
+AvlTree::Node* AvlTree::balancing(Node *node)
 {
     fixHeight(node);
     if(balanceFactor(node)==2)
@@ -138,7 +132,7 @@ Node* AvlTree::balancing(Node *node)
     return node;
 }
 
-Node* AvlTree::addKey(Node *node, int datum)
+AvlTree::Node* AvlTree::addKey(Node *node, int datum)
 {
     if(node==nullptr)
         node=new Node(datum);
@@ -157,7 +151,7 @@ void AvlTree::addKey(int datum)
     root=addKey(root, datum);
 }
 
-Node* AvlTree::findMin(Node* node) //search node with minimum key in the subtree
+AvlTree::Node* AvlTree::findMin(Node* node) //search node with minimum key in the subtree
 {
     if(node->left)
        return findMin(node->left);
@@ -165,7 +159,7 @@ Node* AvlTree::findMin(Node* node) //search node with minimum key in the subtree
         return node;
 }
 
-Node* AvlTree::deleteMin(Node* node)
+AvlTree::Node* AvlTree::deleteMin(Node* node)
 {
     if(node->left==0)
         return node->right;
@@ -173,7 +167,7 @@ Node* AvlTree::deleteMin(Node* node)
     return balancing(node);
 }
 
-Node* AvlTree::deleteKey(Node* node, int datum)
+AvlTree::Node* AvlTree::deleteKey(Node* node, int datum)
 {
     if(node==nullptr)
         return 0;
@@ -203,7 +197,7 @@ void AvlTree::deleteKey(int datum)
     root=deleteKey(root, datum);
 }
 
-Node* AvlTree::findKey(Node* node, int datum)
+AvlTree::Node* AvlTree::findKey(Node* node, int datum)
 {
     if(node==nullptr)
         return node;

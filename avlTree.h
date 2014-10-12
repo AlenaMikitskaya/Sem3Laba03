@@ -1,16 +1,6 @@
 #ifndef AVLTREE_H
 #define AVLTREE_H
 
-struct Node
-{
-    int key;
-    Node *right;
-    Node *left;
-    int height;
-
-    Node(int);
-};
-
 class AvlTree
 {
     public:
@@ -25,7 +15,21 @@ class AvlTree
         bool findKey(int);
 
     private:
-        Node *root;
+        struct Node
+        {
+            int key;
+            Node *right;
+            Node *left;
+            int height;
+
+            Node(int datum)
+            {
+                right=nullptr;
+                left=nullptr;
+                key=datum;
+                height=1;
+            };
+        } *root;
 
         void copyOfTree(Node*&, Node*);
         void deleteTree(Node*);
